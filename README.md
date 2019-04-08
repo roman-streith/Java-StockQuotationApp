@@ -1,2 +1,2 @@
-# Java-StockTable
+# Java-StockQuotationApp
 ALGO-DAT
