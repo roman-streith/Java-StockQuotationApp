@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 
 public class Stock {
     // constructor method
-    Stock(String name, String symbol, String number){ // , String wkn, String token
+    public Stock(String name, String symbol, String number){ // , String wkn, String token
         this.name = name;
         this.wkn = number; // Wertpapierkennnummer
         this.symbol = symbol; // Kürzel

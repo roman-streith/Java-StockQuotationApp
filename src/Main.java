@@ -5,7 +5,7 @@ public class Main {
 
     public static void main(String[] args) {
         // initiate Table (Implement if no prev state loaded)
-        HashTable stockTable = new HashTable(1000);
+        HashTable stockTable = new HashTable(2003);
         // wait for user input...
         Scanner reader = new Scanner(System.in);
         String userInput = "";
@@ -28,7 +28,7 @@ public class Main {
                 case "2": // SEARCH
                     System.out.println("Enter the Stock you want to search for in the table: ");
                     String searchName = reader.nextLine();
-                    stockTable.searchStock(searchName);
+                    stockTable.showHistory(searchName);
                     break;
                 case "3": // DELETE
                     System.out.println("Enter the Stock you want to remove from the table: ");
