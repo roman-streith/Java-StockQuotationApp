@@ -4,13 +4,15 @@ import java.text.SimpleDateFormat;
 
 public class Stock {
     // constructor method
-    Stock(String name){ // , String wkn, String token
+    Stock(String name, String symbol, String number){ // , String wkn, String token
         this.name = name;
-        //this.wkn = wkn; // Wertpapierkennnummer
-        //this.symbol = symbol; // Kürzel
+        this.wkn = number; // Wertpapierkennnummer
+        this.symbol = symbol; // Kürzel
     }
     private String name;
     private String[] latestHistory = null;
+    private String wkn;
+    private String symbol;
     /*private String date;
     private String open; // Wert bei Börsenöffnung
     private String high;
@@ -18,8 +20,6 @@ public class Stock {
     private String close; // Wert bei Börsenschluss
     private String volume;
     private String AdjClose; // Berichtigter Kurs
-    private String wkn;
-    private String symbol;
     private Record stockRecord;
     */
     public void showCurrentInfo(){
@@ -36,6 +36,7 @@ public class Stock {
             }
             System.out.format("\n-----------------------------------------------------------------");
         } else {
+            System.out.format("\n-----------------------------------------------------------------");
             System.out.println(" - No history found! ");
         }
     }
@@ -45,7 +46,9 @@ public class Stock {
     }
 
     public void showSelf(){
-        System.out.println(this.name);
+        System.out.println("Name: " + this.name);
+        System.out.println("Symbol: " + this.symbol);
+        System.out.println("Number: " + this.wkn);
     }
     public String getName(){
         return this.name;

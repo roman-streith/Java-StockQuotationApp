@@ -14,11 +14,15 @@ public class Main {
             userInput = reader.nextLine();
             switch (userInput){
                 case "1": // ADD
-                    System.out.println("Enter the Stock you want to add to the table: ");
+                    System.out.println("Enter the Stock you want to add to the table!");
+                    System.out.println("Name: ");
                     String name = reader.nextLine();
-                    // pull StockData from Api
+                    System.out.println("Symbol: ");
+                    String symbol = reader.nextLine();
+                    System.out.println("Number: ");
+                    String number = reader.nextLine();
                     // initialise as  new stock
-                    Stock stock = new Stock(name); //, wkn, symbol
+                    Stock stock = new Stock(name, symbol, number);
                     stockTable.insertStock(stock);
                     break;
                 case "2": // SEARCH
