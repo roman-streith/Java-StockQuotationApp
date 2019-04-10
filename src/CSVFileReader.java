@@ -9,13 +9,12 @@ public class CSVFileReader{
 
         String csvFile =  System.getProperty("user.dir") + "/csv/" + symbol.toUpperCase() +".csv";
         String line;
-        String cvsSplitBy = ",";
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             int currentLine = 0;
             while ((line = br.readLine()) != null && currentLine < 31) {
                 // use comma as separator
-                String[] items = line.split(cvsSplitBy);
+                String[] items = line.split(",");
                 if(currentLine == 1 || currentLine == 0){
                     System.out.println("========================================================================================================");
                 } else {
