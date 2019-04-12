@@ -5,11 +5,29 @@ import java.io.IOException;
 
 public class CSVFileReader{
 
-    public static void readFile(String symbol, HashTable stockTable) {
+    public static String[] getThirtyDays(String symbol){
+        String csvFile =  System.getProperty("user.dir") + "/csv/" + symbol.toUpperCase() +".csv";
+        String line;
+        String[] history = new String[31];
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+
+            int currentLine = 0;
+            while ((line = br.readLine()) != null && currentLine < 31) {
+                history[currentLine] = line;
+                currentLine++;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return history;
+    }
+
+
+    public static void printFile(String symbol, HashTable stockTable) {
 
         String csvFile =  System.getProperty("user.dir") + "/csv/" + symbol.toUpperCase() +".csv";
         String line;
-
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             int currentLine = 0;
             while ((line = br.readLine()) != null && currentLine < 31) {
@@ -31,10 +49,6 @@ public class CSVFileReader{
                     System.out.format(" %-11s |", items[i]);
                 }
                 System.out.format("\n");
-
-                if(currentLine == 1){
-                    stockTable.addHistoryToStock(symbol, items);
-                }
 
                 currentLine++;
             }

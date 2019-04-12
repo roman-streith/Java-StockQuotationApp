@@ -9,39 +9,45 @@ public class Main {
         // wait for user input...
         Scanner reader = new Scanner(System.in);
         String userInput = "";
-        while (!userInput.equals("4")){
+        while (!userInput.equals("6")){
             showMenu();
             userInput = reader.nextLine();
             switch (userInput){
                 case "1": // ADD
                     System.out.println("Enter the Stock you want to add to the table!");
-                    System.out.println("Name: ");
+                    System.out.format("Name: ");
                     String name = reader.nextLine();
-                    System.out.println("Symbol: ");
+                    System.out.format("Symbol: ");
                     String symbol = reader.nextLine();
-                    System.out.println("Number: ");
+                    System.out.format("Number: ");
                     String number = reader.nextLine();
                     // initialise as  new stock
                     Stock stock = new Stock(name, symbol, number);
                     stockTable.insertStock(stock);
                     break;
                 case "2": // SEARCH
-                    System.out.println("Enter the Stock you want to search for in the table: ");
+                    System.out.format("Enter the Stock you want to search for in the table: ");
                     String searchName = reader.nextLine();
-                    stockTable.showHistory(searchName);
+                    stockTable.checkTable(searchName, "SEARCH");
+                    //stockTable.showHistory(searchName);
                     break;
                 case "3": // DELETE
-                    System.out.println("Enter the Stock you want to remove from the table: ");
+                    System.out.format("Enter the Stock you want to remove from the table: ");
                     String delName = reader.nextLine();
-                    stockTable.deleteStock(delName);
+                    stockTable.checkTable(delName, "DELETE");
                     break;
-                case "4": // EXIT
-                    System.out.println("Exiting...");
-                    break;
-                case "5": // IMPORT
-                    System.out.println("Enter symbol of stock you want to import: ");
+                case "4": // IMPORT
+                    System.out.format("Enter symbol of stock you want to import: ");
                     String importSymbol = reader.nextLine();
-                    CSVFileReader.readFile(importSymbol, stockTable);
+                    stockTable.checkTable(importSymbol, "IMPORT");
+                    break;
+                case "5": // PRINT CSV
+                    System.out.format("Enter symbol of stock you want to print: ");
+                    String printSymbol = reader.nextLine();
+                    CSVFileReader.printFile(printSymbol, stockTable);
+                    break;
+                case "6": // EXIT
+                    System.out.println("Exiting...");
                     break;
                  //...
                 default:
@@ -53,11 +59,10 @@ public class Main {
     }
 
     private static void showMenu(){
-        System.out.println("Enter the according number and press enter to continue:");
-        System.out.println("1.) ADD");
-        System.out.println("2.) SEARCH");
-        System.out.println("3.) DELETE");
-        System.out.println("4.) EXIT...");
-        System.out.println("5.) IMPORT");
+        String[] menu = {"ADD", "SEARCH", "DELETE", "IMPORT", "PRINT CSV", "EXIT..."};
+        System.out.format("\nEnter the according number and press enter to continue:\n");
+        for(int i = 0; i < menu.length; i++){
+            System.out.println((i+1) + ".) " + menu[i]);
+        }
     }
 }

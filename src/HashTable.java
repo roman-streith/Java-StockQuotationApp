@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class HashTable {
     private Stock[] stockTable;
@@ -6,12 +7,38 @@ public class HashTable {
         this.stockTable = new Stock[size];
     }
 
+    public void checkTable(String userInput, String flag){
+
+        int index = searchStock(userInput);
+
+        if (index >= 0){
+
+            switch (flag){
+                case "SEARCH":
+                    showHistory(index);
+                    break;
+                case "DELETE":
+                    deleteStock(index);
+                    break;
+                case "IMPORT":
+                    importData(index, userInput);
+                    break;
+                default:
+                    System.out.println("Unknown flag in \"checkTable()\"");
+                    break;
+            }
+
+        } else {
+            System.out.println("No such stock in table!");
+        }
+    }
+
     public void insertStock(Stock stock){
-        // convert String to Number in Ascii added up !!! NOT THE FINAL SOLUTION
+        // bad because we always init a new stock before we know if it is even getting used
         int index = hashFunction(stock.getName());
+
         int val = 1;
         boolean duplicat = false;
-
         while(stockTable[index] != null) {
             if (stockTable[index].getName().equals(stock.getName())) {
                 System.out.println("The stock " + stock.getName() + " already exists!");
@@ -26,39 +53,42 @@ public class HashTable {
 
         if(!duplicat){
             stockTable[index] = stock;
-            System.out.println(stock.getName() + " has been inserted at index[" + index + "]");
+            System.out.println("The stock \"" + stock.getName() + "\" has been inserted at index[" + index + "].");
         }
     }
 
-    public void deleteStock(String userInput){
+    private void deleteStock(int index){
         // find in Table via Hash and set cell on index to null
-        int index = searchStock(userInput);
-        if(index != -1){
-            Stock stock = stockTable[index];
-            stock.showSelf();
-            stockTable[index] = null;
-        } else {
-            System.out.println("No suc stock in table - deleteStock()");
-        }
-        // delete 30-day history
-    }
-
-    public void showHistory(String userInput){
-        int index = searchStock(userInput);
-        if (index < 0) {
-            return;
-        }
         Stock stock = stockTable[index];
         stock.showSelf();
-        stock.showCurrentInfo();
+        // get additional permission from user to delete the stock from table
+        System.out.format("Remove this stock? [Y]es/[N]o: ");
+        Scanner reader = new Scanner(System.in);
+        String decision = reader.nextLine();
+        if(decision.equals("Y")){
+            stockTable[index] = null;
+            System.out.println("The stock has been removed!");
+        } else {
+            System.out.println("The stock has NOT been removed!");
+        }
     }
 
-    public int  searchStock(String userInput){
+    private void showHistory(int index){
+        Stock stock = stockTable[index];
+        stock.showSelf();
+    }
+
+    private void importData(int index, String userInput){
+        String[] data = CSVFileReader.getThirtyDays(userInput);
+        stockTable[index].populateHistory(data);
+        System.out.println("History has been added to \"" +stockTable[index].getName()+ "\" at index [" +index+ "]!");
+    }
+
+    private int searchStock(String userInput){
         int index = hashFunction(userInput);
         int val = 1;
         while(true){
             if(stockTable[index] == null){
-                System.out.println("No such Stock in table - searchStock()");
                 index = -1;
                 break;
             } else if(stockTable[index].getName().equals(userInput)) {
@@ -70,31 +100,15 @@ public class HashTable {
         return index % 2003;
     }
 
-    public void addHistoryToStock(String name, String[] history){
-        int index = searchStock(name);
-        stockTable[index].populateLatestHistory(history);
-    }
-
     private int hashFunction(String StockName){
         int index = 0;
         for (int i = 0; i < StockName.length(); i++){
             index += StockName.charAt(i) * Math.pow(53, i);
         }
         return index%2003;
-
-
-        /*
-        if(stockTable[index] == null){
-            return index;
-        } else if (stockTable[index].getName().equals(StockName)){
-            System.out.println("The stock "+ StockName + " already exists!");
-            return -1;
-        } else {
-            System.out.println("Collision");
-            return hashFunction(StockName, (value + 1) * (value + 1));
-            // collision handling here
-        }
-        */
     }
+
+
+
 
 }
