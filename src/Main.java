@@ -22,8 +22,7 @@ public class Main {
                     System.out.format("Number: ");
                     String number = reader.nextLine();
                     // initialise as  new stock
-                    Stock stock = new Stock(name, symbol, number);
-                    stockTable.insertStock(stock);
+                    stockTable.insertStock(name, symbol, number);
                     break;
                 case "2": // SEARCH
                     System.out.format("Enter the Stock you want to search for in the table: ");
