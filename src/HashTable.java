@@ -81,7 +81,7 @@ public class HashTable {
     private void importData(int index, String userInput){
         String[] data = CSVFileReader.getThirtyDays(userInput);
         stockTable[index].populateHistory(data);
-        System.out.println("History has been added to \"" +stockTable[index].getName()+ "\" at index [" +index+ "]!");
+        System.out.println("History has been added to \"" + stockTable[index].getName()+ "\" at index [" + index + "]!");
     }
 
     private int searchStock(String userInput){
@@ -91,7 +91,7 @@ public class HashTable {
             if(stockTable[index] == null){
                 index = -1;
                 break;
-            } else if(stockTable[index].getName().equals(userInput)) {
+            } else if (stockTable[index].getName().equals(userInput)) {
                 break;
             }
             index += ((val + 1) * (val + 1)) % 2003;
@@ -105,10 +105,6 @@ public class HashTable {
         for (int i = 0; i < StockName.length(); i++){
             index += StockName.charAt(i) * Math.pow(53, i);
         }
-        return index%2003;
+        return index % 2003;
     }
-
-
-
-
 }
