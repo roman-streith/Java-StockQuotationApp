@@ -2,14 +2,20 @@ import java.util.Scanner;
 
 public class HashTable {
     private Stock[] stockTable;
+    private SymbolHashTable referenceTable;
         // constructor method
     HashTable(int size){
         this.stockTable = new Stock[size];
+        this.referenceTable = new SymbolHashTable(size);
     }
 
     public void checkTable(String userInput, String flag){
 
         int index = searchStock(userInput);
+
+        if(index < 0 && flag.equals("SEARCH")){
+            index = referenceTable.searchReference(userInput, "STOCK_INDEX");
+        }
 
         if (index >= 0){
 
@@ -33,15 +39,14 @@ public class HashTable {
         }
     }
 
-    public void insertStock(Stock stock){
-        // bad because we always init a new stock before we know if it is even getting used
-        int index = hashFunction(stock.getName());
+    public void insertStock(String name, String symbol, String number){
+        int index = hashFunction(name);
 
         int val = 1;
         boolean duplicat = false;
         while(stockTable[index] != null) {
-            if (stockTable[index].getName().equals(stock.getName())) {
-                System.out.println("The stock " + stock.getName() + " already exists!");
+            if (stockTable[index].getName().equals(name)) {
+                System.out.println("The stock " + name + " already exists!");
                 duplicat = true;
                 break;
             } else if (stockTable[index] == null) {
@@ -52,8 +57,10 @@ public class HashTable {
         }
 
         if(!duplicat){
-            stockTable[index] = stock;
-            System.out.println("The stock \"" + stock.getName() + "\" has been inserted at index[" + index + "].");
+            stockTable[index] = new Stock(name, symbol, number);
+            SymbolReference reference = new SymbolReference(stockTable[index].getSymbol(), index);
+            referenceTable.insertReference(reference);
+            System.out.println("The stock \"" + stockTable[index].getName() + "\" has been inserted at index[" + index + "].");
         }
     }
 
@@ -66,6 +73,7 @@ public class HashTable {
         Scanner reader = new Scanner(System.in);
         String decision = reader.nextLine();
         if(decision.equals("Y")){
+            referenceTable.deleteReference(stock.getSymbol());
             stockTable[index] = null;
             System.out.println("The stock has been removed!");
         } else {
@@ -107,8 +115,5 @@ public class HashTable {
         }
         return index%2003;
     }
-
-
-
 
 }

@@ -48,4 +48,7 @@ public class Stock {
     public String getName(){
         return this.name;
     }
+    public String getSymbol(){
+        return this.symbol;
+    }
 }
