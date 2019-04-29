@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class SymbolHashTable {
+public class SymbolHashTable implements java.io.Serializable{
     private SymbolReference[] referenceTable;
 
     SymbolHashTable(int size){
@@ -23,7 +23,6 @@ public class SymbolHashTable {
             index += ((val + 1) * (val + 1));
             val++;
         }
-
         if(!duplicat){
             referenceTable[index] = reference;
             System.out.println("The reference \"" + reference.getSymbol() + "\" has been inserted at index[" + index + "].");
@@ -31,11 +30,11 @@ public class SymbolHashTable {
     }
 
     public void deleteReference(String symbol){
-        int index = searchReference(symbol, "REFERENCE_INDEX");
+        int index = searchReference(symbol, "GET_REFERENCE_INDEX");
         referenceTable[index] = null;
     }
 
-    public int searchReference(String userInput, String flag){
+    public int searchReference(String userInput, String action){
         int index = hashFunction(userInput);
         int val = 1;
         while(true){
@@ -48,9 +47,11 @@ public class SymbolHashTable {
             index += ((val + 1) * (val + 1)) % 2003;
             val++;
         }
-        if(flag.equals("STOCK_INDEX") && index != -1) {
+        // gets the index of the actual stock
+        if(action.equals("GET_STOCK_INDEX") && index != -1) {
             return referenceTable[index].getIndex() % 2003;
-        } else if (flag.equals("REFERENCE_INDEX")) {
+        // gets the index of the reference itself
+        } else if (action.equals("GET_REFERENCE_INDEX")) {
             return index % 2003;
         }
         return -1;

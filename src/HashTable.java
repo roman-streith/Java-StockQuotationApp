@@ -1,6 +1,7 @@
 import java.util.Scanner;
+import java.io.Serializable;
 
-public class HashTable {
+public class HashTable implements java.io.Serializable {
     private Stock[] stockTable;
     private SymbolHashTable referenceTable;
         // constructor method
@@ -9,17 +10,16 @@ public class HashTable {
         this.referenceTable = new SymbolHashTable(size);
     }
 
-    public void checkTable(String userInput, String flag){
+    public void checkTable(String userInput, String action){
 
         int index = searchStock(userInput);
-
-        if(index < 0 && flag.equals("SEARCH")){
-            index = referenceTable.searchReference(userInput, "STOCK_INDEX");
+        if(index < 0 ){
+            index = referenceTable.searchReference(userInput, "GET_STOCK_INDEX");
         }
 
         if (index >= 0){
 
-            switch (flag){
+            switch (action){
                 case "SEARCH":
                     showHistory(index);
                     break;
@@ -28,6 +28,9 @@ public class HashTable {
                     break;
                 case "IMPORT":
                     importData(index, userInput);
+                    break;
+                case "PLOT":
+                    plotData(index);
                     break;
                 default:
                     System.out.println("Unknown flag in \"checkTable()\"");
@@ -87,9 +90,13 @@ public class HashTable {
     }
 
     private void importData(int index, String userInput){
-        String[] data = CSVFileReader.getThirtyDays(userInput);
+        String[] data = FileManager.getThirtyDays(userInput);
         stockTable[index].populateHistory(data);
         System.out.println("History has been added to \"" +stockTable[index].getName()+ "\" at index [" +index+ "]!");
+    }
+
+    private void plotData(int index){
+        stockTable[index].plot();
     }
 
     private int searchStock(String userInput){

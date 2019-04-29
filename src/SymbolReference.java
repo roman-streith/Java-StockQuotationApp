@@ -1,4 +1,4 @@
-public class SymbolReference {
+public class SymbolReference implements java.io.Serializable {
     // constructor method
     SymbolReference(String symbol, int index){
         this.indexInTable = index;
