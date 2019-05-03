@@ -13,7 +13,7 @@ public class HashTable implements java.io.Serializable {
     public void checkTable(String userInput, String action){
 
         int index = searchStock(userInput);
-        if(index < 0 ){
+        if (index < 0 ){
             index = referenceTable.searchReference(userInput, "GET_STOCK_INDEX");
         }
 
@@ -43,27 +43,30 @@ public class HashTable implements java.io.Serializable {
     }
 
     public void insertStock(String name, String symbol, String number){
-        int index = hashFunction(name);
-
-        int val = 1;
+        int hashIndex = hashFunction(name);
+        int count = 2;
         boolean duplicat = false;
-        while(stockTable[index] != null) {
-            if (stockTable[index].getName().equals(name)) {
-                System.out.println("The stock " + name + " already exists!");
+        int collisionIndex = hashIndex;
+        while (stockTable[hashIndex] != null) {
+            if (stockTable[hashIndex].getName().equals(name)) {
                 duplicat = true;
+                System.out.println("This stock already exists!");
                 break;
-            } else if (stockTable[index] == null) {
+            } else if (stockTable[hashIndex] == null) {
                 break;
             }
-            index += ((val + 1) * (val + 1));
-            val++;
+            hashIndex = collisionHandling(collisionIndex, count);
+            count++;
         }
 
-        if(!duplicat){
-            stockTable[index] = new Stock(name, symbol, number);
-            SymbolReference reference = new SymbolReference(stockTable[index].getSymbol(), index);
-            referenceTable.insertReference(reference);
-            System.out.println("The stock \"" + stockTable[index].getName() + "\" has been inserted at index[" + index + "].");
+        if (!duplicat){
+            SymbolReference reference = new SymbolReference(symbol, hashIndex);
+            boolean referenceAlreadyInTable = referenceTable.insertReference(reference);
+            if (!referenceAlreadyInTable){
+                stockTable[hashIndex] = new Stock(name, symbol, number);
+                System.out.println("The stock \"" + stockTable[hashIndex].getName() + "\" has been inserted at index[" + hashIndex + "].");
+            }
+
         }
     }
 
@@ -75,7 +78,7 @@ public class HashTable implements java.io.Serializable {
         System.out.format("Remove this stock? [Y]es/[N]o: ");
         Scanner reader = new Scanner(System.in);
         String decision = reader.nextLine();
-        if(decision.equals("Y")){
+        if (decision.equals("Y")){
             referenceTable.deleteReference(stock.getSymbol());
             stockTable[index] = null;
             System.out.println("The stock has been removed!");
@@ -86,7 +89,7 @@ public class HashTable implements java.io.Serializable {
 
     private void showHistory(int index){
         Stock stock = stockTable[index];
-        stock.showSelf();
+        stock.showCurrentHistory();
     }
 
     private void importData(int index, String userInput){
@@ -100,7 +103,20 @@ public class HashTable implements java.io.Serializable {
     }
 
     private int searchStock(String userInput){
-        int index = hashFunction(userInput);
+        int hashIndex = hashFunction(userInput);
+        int count = 2;
+        int collisionIndex = hashIndex;
+        while (true) {
+            if (stockTable[hashIndex] == null) {
+                hashIndex = -1;
+                break;
+            } else if (stockTable[hashIndex].getName().equals(userInput)) {
+                break;
+            }
+            hashIndex = collisionHandling(collisionIndex, count);
+            count++;
+        }
+        /*int index = hashFunction(userInput);
         int val = 1;
         while(true){
             if(stockTable[index] == null){
@@ -111,8 +127,8 @@ public class HashTable implements java.io.Serializable {
             }
             index += ((val + 1) * (val + 1)) % 2003;
             val++;
-        }
-        return index % 2003;
+        }*/
+        return hashIndex % 2003;
     }
 
     private int hashFunction(String StockName){
@@ -120,7 +136,17 @@ public class HashTable implements java.io.Serializable {
         for (int i = 0; i < StockName.length(); i++){
             index += StockName.charAt(i) * Math.pow(53, i);
         }
-        return index%2003;
+        return index % 2003;
+    }
+
+    private int collisionHandling(int collisionindex, int index){
+        double retVal = 0;
+        for (int i = 0; i < 10; i++){
+            retVal = (collisionindex + Math.pow((-1), index + 1) * (Math.ceil((index/2)) * Math.ceil((index/2)))) % 2003;
+            System.out.format("retval["+index+"]: " + retVal +"\n");
+            index++;
+        }
+        return (int)retVal;
     }
 
 }

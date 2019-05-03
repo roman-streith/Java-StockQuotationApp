@@ -17,16 +17,17 @@ public class Stock implements java.io.Serializable{
     private String wkn;
     private String symbol;
 
-    private void showCurrentHistory(){
+    public void showCurrentHistory(){
+        showSelf();
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         System.out.println("LATEST HISTORY " + dateFormat.format(date)); //2016/11/16 12:08:43
 
-        if( latestHistory != null){
+        if (this.latestHistory != null){
             System.out.format("===================================================================================================\n");
             System.out.format("| %-11s | %-11s | %-11s | %-11s | %-11s | %-11s | %-11s |\n", "Date", "Open", "High", "Low", "Close", "Volume", "ADJ Close" );
             System.out.format("===================================================================================================\n|");
-            String[] latestData = latestHistory[0].split(",");
+            String[] latestData = this.latestHistory[0].split(",");
             for (int i = 0; i < latestData.length; i++){
                 System.out.format(" %-11s |", latestData[i]);
             }
@@ -43,21 +44,21 @@ public class Stock implements java.io.Serializable{
     }
 
     public void showSelf(){
-        System.out.println("Name: " + this.name);
+        System.out.println("\n\nName: " + this.name);
         System.out.println("Symbol: " + this.symbol);
         System.out.println("Number: " + this.wkn);
-        showCurrentHistory();
     }
 
     public void plot(){
-        if( latestHistory != null){
-            int nOfHistoryEntries = latestHistory.length;
+        showSelf();
+        if (this.latestHistory != null){
+            int nOfHistoryEntries = this.latestHistory.length;
             double[] close = new double[nOfHistoryEntries];
             double lowest = 0;
             double highest = 0;
 
             for (int i = 0; i < nOfHistoryEntries; i++){
-                String[] line = latestHistory[i].split(",");
+                String[] line = this.latestHistory[i].split(",");
                 close[i] = Double.parseDouble(line[4]);
                 if (i == 0){
                     lowest = close[i];
@@ -87,22 +88,22 @@ public class Stock implements java.io.Serializable{
                     currentVal --;
                 }
                 plotArray[i][(int)currentVal] = close[i];
-                /*for (int j = (int)currentVal; j >= 0 ; j--){
+                for (int j = (int)currentVal; j >= 0 ; j--){
                     plotArray[i][j] = 1;
-                }*/
+                }
             }
 
             double currentLineVal = highest+ ySteps;
 
-            System.out.format(" %.2f|", currentLineVal);
-            for(int j = 0; j < plotWidth;  j++){
+            System.out.format(" %06.2f|", currentLineVal);
+            for (int j = 0; j < plotWidth;  j++){
                 System.out.format("----");
             }
             System.out.format("\n");
 
             for (int y = plotHeight - 1; y >= 0; y--){
                 currentLineVal = currentLineVal- ySteps;
-                System.out.format(" %.2f|", currentLineVal);
+                System.out.format(" %06.2f|", currentLineVal);
                 for (int x = 0; x < plotWidth; x++){
                     if(plotArray[x][y] <= 0.0){
                         System.out.format("----");
@@ -112,10 +113,10 @@ public class Stock implements java.io.Serializable{
                 }
                 System.out.format("\n");
             }
-            System.out.format("      |");
+            System.out.format("       |");
 
-            for(int j = 0; j < plotWidth;  j++){
-                System.out.format("|%-2s|", j);
+            for (int j = 0; j < plotWidth;  j++){
+                System.out.format("|%2s|", j);
             }
             System.out.format("\n\n--------------------------------------------------------------------------------------------------------------------------------\n");
         } else {

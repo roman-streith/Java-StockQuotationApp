@@ -11,7 +11,7 @@ public class FileManager{
 
             int currentLine = -1;
             while ((line = br.readLine()) != null && currentLine < 30) {
-                if(currentLine != -1) {
+                if (currentLine != -1) {
                     history[currentLine] = line;
                 }
                 currentLine++;
@@ -20,26 +20,11 @@ public class FileManager{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // maybe create a "Helper" class for functions like this
-        int count = 0;
-        for (String i : history) {
-            if (i != null) {
-                count++;
-            }
-        }
 
-        String[] trimmedHistory = new String[count];
-
-        int index = 0;
-        for (String i : history) {
-            if (i != null) {
-                trimmedHistory[index++] = i;
-            }
-        }
-        return trimmedHistory;
+        return trimmArray(history);
     }
 
-    public static  void saveHashTable(HashTable stockTable, String fileName){
+    public static void saveHashTable(HashTable stockTable, String fileName){
 
         try {
             FileOutputStream fileOut = new FileOutputStream("saves/"+fileName+".ser");
@@ -72,7 +57,25 @@ public class FileManager{
         return stockTable;
     }
 
-    public static void printCSV(String symbol, HashTable stockTable) {
+    // maybe create a "Helper" class for functions like this
+    private static String[] trimmArray(String[] arr){
+        int count = 0;
+        for (String i : arr) {
+            if (i != null) {
+                count++;
+            }
+        }
+        String[] trimmedArr = new String[count];
+        int index = 0;
+        for (String i : arr) {
+            if (i != null) {
+                trimmedArr[index++] = i;
+            }
+        }
+        return trimmedArr;
+    }
+
+    /*public static void printCSV(String symbol, HashTable stockTable) {
 
         String csvFile =  System.getProperty("user.dir") + "/csv/" + symbol.toUpperCase() +".csv";
         String line;
@@ -81,7 +84,7 @@ public class FileManager{
             while ((line = br.readLine()) != null && currentLine < 31) {
                 // use comma as separator
                 String[] items = line.split(",");
-                if(currentLine == 1 || currentLine == 0){
+                if (currentLine == 1 || currentLine == 0){
                     System.out.println("========================================================================================================");
                 } else {
                     System.out.println("--------------------------------------------------------------------------------------------------------");
@@ -106,6 +109,6 @@ public class FileManager{
             e.printStackTrace();
         }
 
-    }
+    }*/
 
 }

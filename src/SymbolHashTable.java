@@ -7,25 +7,30 @@ public class SymbolHashTable implements java.io.Serializable{
         this.referenceTable = new SymbolReference[size];
     }
 
-    public void insertReference(SymbolReference reference){
-        int index = hashFunction(reference.getSymbol());
-
-        int val = 1;
+    public boolean insertReference(SymbolReference reference){
+        int hashIndex = hashFunction(reference.getSymbol());
+        int count = 2;
         boolean duplicat = false;
-        while(referenceTable[index] != null) {
-            if (referenceTable[index].getSymbol().equals(reference.getSymbol())) {
-                System.out.println("The reference " + reference.getSymbol() + " already exists!");
+        int collisionindex = hashIndex;
+        while (referenceTable[hashIndex] != null) {
+            if (referenceTable[hashIndex].getSymbol().equals(reference.getSymbol())) {
+                System.out.println("The reference/symbol " + reference.getSymbol() + " already exists!");
                 duplicat = true;
                 break;
-            } else if (referenceTable[index] == null) {
+            } else if (referenceTable[hashIndex] == null) {
                 break;
             }
-            index += ((val + 1) * (val + 1));
-            val++;
+
+            hashIndex= collisionHandling(collisionindex, count);
+            count++;
         }
-        if(!duplicat){
-            referenceTable[index] = reference;
-            System.out.println("The reference \"" + reference.getSymbol() + "\" has been inserted at index[" + index + "].");
+        if (!duplicat){
+            referenceTable[hashIndex] = reference;
+            System.out.println("The reference/symbol \"" + reference.getSymbol() +
+                            "\" has been inserted at index[" + hashIndex + "].");
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -37,8 +42,8 @@ public class SymbolHashTable implements java.io.Serializable{
     public int searchReference(String userInput, String action){
         int index = hashFunction(userInput);
         int val = 1;
-        while(true){
-            if(referenceTable[index] == null){
+        while (true){
+            if (referenceTable[index] == null){
                 index = -1;
                 break;
             } else if(referenceTable[index].getSymbol().equals(userInput)) {
@@ -48,7 +53,7 @@ public class SymbolHashTable implements java.io.Serializable{
             val++;
         }
         // gets the index of the actual stock
-        if(action.equals("GET_STOCK_INDEX") && index != -1) {
+        if (action.equals("GET_STOCK_INDEX") && index != -1) {
             return referenceTable[index].getIndex() % 2003;
         // gets the index of the reference itself
         } else if (action.equals("GET_REFERENCE_INDEX")) {
@@ -63,6 +68,16 @@ public class SymbolHashTable implements java.io.Serializable{
             index += StockName.charAt(i) * Math.pow(53, i);
         }
         return index%2003;
+    }
+
+    private int collisionHandling(int collisionindex, int index){
+        double retVal = 0;
+        for ( int i = 0; i < 10; i++){
+            retVal = (collisionindex + Math.pow((-1), index + 1) * (Math.ceil((index/2)) * Math.ceil((index/2)))) % 2003;
+            System.out.format("retval["+index+"]: " + retVal +"\n");
+            index++;
+        }
+        return (int)retVal;
     }
 
 }
