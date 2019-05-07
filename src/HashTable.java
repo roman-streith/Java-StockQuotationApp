@@ -100,7 +100,7 @@ public class HashTable implements java.io.Serializable {
             if (stockTable[hashIndex] == null) {    //empty field indicates that data is not in table, set index to a non-table value (-1)
                 hashIndex = -1;
                 break;
-            } else if (stockTable[hashIndex].getName().equals(userInput)) { //break on match with item in table
+            } else if ((stockTable[hashIndex].getName() != null) && stockTable[hashIndex].getName().equals(userInput)) { //break on match with item in table
                 break;
             }
             hashIndex = collisionHandling(collisionIndex, count);   //else manipulate index with collision-handling method (square probing)

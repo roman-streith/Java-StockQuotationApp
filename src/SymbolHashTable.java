@@ -36,7 +36,7 @@ public class SymbolHashTable implements java.io.Serializable {
         while (true) {
             if (referenceTable[hashIndex] == null) {    //empty field indicates that data is not in table, return non-table value (-1)
                 return -1;
-            } else if(referenceTable[hashIndex].getSymbol().equals(userInput)) {    //break on match with item in table
+            } else if((referenceTable[hashIndex].getSymbol() != null) && referenceTable[hashIndex].getSymbol().equals(userInput)) {    //break on match with item in table
                 break;
             }
             hashIndex = collisionHandling(collisionIndex, count);   //else manipulate index with collision-handling method (square probing)
