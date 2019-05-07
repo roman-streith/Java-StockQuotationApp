@@ -1,13 +1,16 @@
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-public class FileManager{
+public class FileManager {
 
-    public static String[] getThirtyDays(String symbol){
-        String csvFile =  System.getProperty("user.dir") + "/csv/" + symbol.toUpperCase() +".csv";
+    public static String[] getThirtyDays(String symbol) {
+        String csvFile = System.getProperty("user.dir") + "/csv/" + symbol.toUpperCase() + ".csv";
         String line;
         String[] history = new String[30];
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(csvFile));
             int currentLine = -1;
             while ((line = br.readLine()) != null && currentLine < 30) {
                 if (currentLine != -1) {
@@ -15,12 +18,37 @@ public class FileManager{
                 }
                 currentLine++;
             }
-
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                Date date0 = sdf.parse(history[0].split(",")[0]);
+                Date date1 = sdf.parse(history[1].split(",")[0]);
+                if (date0.compareTo(date1) > 0) {
+                    history = new String[30];
+                    br =  new BufferedReader(new FileReader(csvFile));
+                    br.readLine();
+                    int linenum = 0;
+                    while (br.readLine() != null) {
+                        linenum++;
+                    }
+                    br =  new BufferedReader(new FileReader(csvFile));
+                    br.readLine();
+                    if (linenum > 30) {
+                        for (int i = 0; i < linenum - 30; i++) {
+                            br.readLine();
+                        }
+                        linenum = 30;
+                    }
+                    for (int j = linenum - 1; j <= 0; j--) {
+                        history[j] = br.readLine();
+                    }
+                }
+            } catch (ParseException p) {
+                return trimmArray(history); //trimm array function if less than 30 values are saved
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return trimmArray(history);
+        return trimmArray(history); //trimm array function if less than 30 values are saved
     }
 
     public static void saveHashTable(HashTable stockTable, String fileName){
@@ -31,7 +59,7 @@ public class FileManager{
             out.writeObject(stockTable);
             out.close();
             fileOut.close();
-            System.out.printf( fileName + ".ser has been saved.\n");
+            System.out.println(fileName + ".ser has been saved.");
         } catch (IOException i) {
             i.printStackTrace();
         }
@@ -56,58 +84,20 @@ public class FileManager{
         return stockTable;
     }
 
-    // maybe create a "Helper" class for functions like this
-    private static String[] trimmArray(String[] arr){
+    private static String[] trimmArray(String[] arr) { //trimm string-array if less than 30 values are saved
         int count = 0;
-        for (String i : arr) {
+        for (String i: arr) {   //count number of non-empty strings
             if (i != null) {
                 count++;
             }
         }
         String[] trimmedArr = new String[count];
         int index = 0;
-        for (String i : arr) {
+        for (String i: arr) {   //create new return-array with size equal to number of non-empty strings and save strings in given array
             if (i != null) {
                 trimmedArr[index++] = i;
             }
         }
         return trimmedArr;
     }
-
-    /*public static void printCSV(String symbol, HashTable stockTable) {
-
-        String csvFile =  System.getProperty("user.dir") + "/csv/" + symbol.toUpperCase() +".csv";
-        String line;
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-            int currentLine = 0;
-            while ((line = br.readLine()) != null && currentLine < 31) {
-                // use comma as separator
-                String[] items = line.split(",");
-                if (currentLine == 1 || currentLine == 0){
-                    System.out.println("========================================================================================================");
-                } else {
-                    System.out.println("--------------------------------------------------------------------------------------------------------");
-                }
-
-                if(currentLine < 10){
-                    System.out.format("|%2d  |", currentLine);
-                } else {
-                    System.out.format("| %2d |", currentLine);
-                }
-
-                for (int i = 0; i < items.length; i++){
-                    System.out.format(" %-11s |", items[i]);
-                }
-                System.out.format("\n");
-
-                currentLine++;
-            }
-            System.out.println("--------------------------------------------------------------------------------------------------------");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }*/
-
 }
