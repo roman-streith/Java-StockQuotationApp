@@ -1,4 +1,6 @@
 public class SymbolHashTable implements java.io.Serializable {
+    private static final long serialVersionUID = 3L;    //serialized object id for JVM to tell whether loading object matches class
+
     private SymbolReference[] referenceTable;
 
     public  SymbolHashTable(int size) {     //construct symbol-table with index-mapping objects to name-table

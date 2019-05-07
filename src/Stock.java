@@ -2,9 +2,9 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-import static java.lang.Integer.parseInt;
-
 public class Stock implements java.io.Serializable {
+    private static final long serialVersionUID = 4L;    //serialized object id for JVM to tell whether loading object matches class
+
     private String name;
     private String[] latestHistory = null;
     private String wkn;

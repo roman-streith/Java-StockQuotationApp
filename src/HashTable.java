@@ -2,6 +2,8 @@ import java.util.Scanner;
 import java.io.Serializable;
 
 public class HashTable implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;    //serialized object id for JVM to tell whether loading object matches class
+
     private Stock[] stockTable;
     private SymbolHashTable referenceTable;
 
