@@ -4,16 +4,16 @@ import java.io.Serializable;
 public class HashTable implements java.io.Serializable {
     private Stock[] stockTable;
     private SymbolHashTable referenceTable;
-        // constructor method
-    HashTable(int size){
+
+    public HashTable(int size) {    //construct hash-table (name hashed) with reference to symbol-table
         this.stockTable = new Stock[size];
         this.referenceTable = new SymbolHashTable(size);
     }
 
-    public void checkTable(String userInput, String action){
+    public void checkTable(String userInput, String action) {   //
 
         int index = searchStock(userInput);
-        if (index < 0 ){
+        if (index < 0 ) {
             index = referenceTable.searchReference(userInput, "GET_STOCK_INDEX");
         }
 
@@ -42,111 +42,85 @@ public class HashTable implements java.io.Serializable {
         }
     }
 
-    public void insertStock(String name, String symbol, String number){
-        int hashIndex = hashFunction(name);
-        int count = 2;
-        boolean duplicat = false;
+    public void insertStock(String name, String symbol, String number) {
+        int hashIndex = hashFunction(name); //hash name of stock
+        int count = 1;
         int collisionIndex = hashIndex;
-        while (stockTable[hashIndex] != null) {
+        while (stockTable[hashIndex] != null) {     //square probing on collision until empty space or object with equal name is found
             if (stockTable[hashIndex].getName().equals(name)) {
-                duplicat = true;
                 System.out.println("This stock already exists!");
-                break;
-            } else if (stockTable[hashIndex] == null) {
-                break;
+                return;
             }
             hashIndex = collisionHandling(collisionIndex, count);
             count++;
         }
-
-        if (!duplicat){
-            SymbolReference reference = new SymbolReference(symbol, hashIndex);
-            boolean referenceAlreadyInTable = referenceTable.insertReference(reference);
-            if (!referenceAlreadyInTable){
-                stockTable[hashIndex] = new Stock(name, symbol, number);
-                System.out.println("The stock \"" + stockTable[hashIndex].getName() + "\" has been inserted at index[" + hashIndex + "].");
-            }
-
+        SymbolReference reference = new SymbolReference(symbol, hashIndex);
+        boolean referenceAlreadyInTable = referenceTable.insertReference(reference);    //try to insert reference to name-table stock-index in symbol-table with hashed symbol index
+        if (!referenceAlreadyInTable) {     //on successful symbol mapping
+            stockTable[hashIndex] = new Stock(name, symbol, number);    //create stockobject and insert into name-table
+            System.out.println("The stock \"" + stockTable[hashIndex].getName() + "\" has been inserted at index[" + hashIndex + "].");
+        } else {
+            System.out.println("Stock with this ID-Number already exists!");
         }
     }
 
-    private void deleteStock(int index){
-        // find in Table via Hash and set cell on index to null
-        Stock stock = stockTable[index];
-        stock.showSelf();
-        // get additional permission from user to delete the stock from table
-        System.out.format("Remove this stock? [Y]es/[N]o: ");
+    private void deleteStock(int index) {
+        Stock stock = stockTable[index];    // delete function must be preceeded by search function
+        stock.showSelf();   //print stock identifiers
+        System.out.format("Remove this stock? [Y]es/[N]o: ");   // get additional permission from user to delete the stock from table
         Scanner reader = new Scanner(System.in);
         String decision = reader.nextLine();
-        if (decision.equals("Y")){
+        if (decision.equals("Y")) {
             referenceTable.deleteReference(stock.getSymbol());
-            stockTable[index] = null;
+            stockTable[index] = new Stock(null, null, null);    //fill deleted stock-index with empty stock-dummy to guarantee correct searching of collision-objects
             System.out.println("The stock has been removed!");
         } else {
             System.out.println("The stock has NOT been removed!");
         }
     }
 
-    private void showHistory(int index){
+    private void showHistory(int index) {   //show latest stock entry of stock on given index
         Stock stock = stockTable[index];
         stock.showCurrentHistory();
     }
 
-    private void importData(int index, String userInput){
-        String[] data = FileManager.getThirtyDays(userInput);
-        stockTable[index].populateHistory(data);
-        System.out.println("History has been added to \"" +stockTable[index].getName()+ "\" at index [" +index+ "]!");
+    private void importData(int index, String userInput) {  //import stock data from csv for stock on given index
+        String[] data = FileManager.getThirtyDays(userInput);   //FM-class method for data import
+        stockTable[index].populateHistory(data);    //save imported data in stockobject as stringarray
+        System.out.println("History has been added to \"" + stockTable[index].getName() + "\" at index [" + index + "]!");
     }
 
-    private void plotData(int index){
-        stockTable[index].plot();
+    private void plotData(int index) {  //plot stock on given index
+        stockTable[index].plot();   //Stock-class plotting method
     }
 
-    private int searchStock(String userInput){
+    private int searchStock(String userInput) {
         int hashIndex = hashFunction(userInput);
-        int count = 2;
+        int count = 1;
         int collisionIndex = hashIndex;
         while (true) {
-            if (stockTable[hashIndex] == null) {
+            if (stockTable[hashIndex] == null) {    //empty field indicates that data is not in table, set index to an non-table value (-1)
                 hashIndex = -1;
                 break;
-            } else if (stockTable[hashIndex].getName().equals(userInput)) {
+            } else if (stockTable[hashIndex].getName().equals(userInput)) { //break on match with item in table
                 break;
             }
-            hashIndex = collisionHandling(collisionIndex, count);
+            hashIndex = collisionHandling(collisionIndex, count);   //else manipulate index with collision-handling method (square probing)
             count++;
         }
-        /*int index = hashFunction(userInput);
-        int val = 1;
-        while(true){
-            if(stockTable[index] == null){
-                index = -1;
-                break;
-            } else if(stockTable[index].getName().equals(userInput)) {
-                break;
-            }
-            index += ((val + 1) * (val + 1)) % 2003;
-            val++;
-        }*/
-        return hashIndex % 2003;
+        return hashIndex;
     }
 
-    private int hashFunction(String StockName){
+    private int hashFunction(String StockName) {    //hash function
         int index = 0;
-        for (int i = 0; i < StockName.length(); i++){
-            index += StockName.charAt(i) * Math.pow(53, i);
+        for (int i = 0; i < StockName.length(); i++) {
+            index += StockName.charAt(i) * Math.pow(53, i); //sum of int-representation of a character times 53 to the power of character-position
         }
-        return index % 2003;
+        return index % 2003;    // mod table-size to stay in bounds
     }
 
-    private int collisionHandling(int collisionindex, int index){
-        double retVal = 0;
-        for (int i = 0; i < 10; i++){
-            retVal = (collisionindex + Math.pow((-1), index + 1) * (Math.ceil((index/2)) * Math.ceil((index/2)))) % 2003;
-            System.out.format("retval["+index+"]: " + retVal +"\n");
-            index++;
-        }
-        return (int)retVal;
+    private int collisionHandling(int collisionindex, int index) {  //on collision calculate new index with square probing method
+        double retVal = (collisionindex + Math.pow((-1), index + 1) * (Math.ceil((index / 2.0)) * Math.ceil((index / 2.0)))) % 2003;
+        return (int) retVal;
     }
-
 }

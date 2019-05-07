@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class SymbolHashTable implements java.io.Serializable{
     private SymbolReference[] referenceTable;
 

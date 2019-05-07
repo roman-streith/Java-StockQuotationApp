@@ -1,17 +1,17 @@
 public class SymbolReference implements java.io.Serializable {
-    // constructor method
-    SymbolReference(String symbol, int index){
-        this.indexInTable = index;
-        this.symbol = symbol; // Kürzel
-    }
-
     private int indexInTable;
     private String symbol;
 
-    public String getSymbol(){
+    public SymbolReference(String symbol, int index) {  //reference object constructor
+        this.indexInTable = index;                      //maps symbol-table index to name-table index, therefore to stock object
+        this.symbol = symbol;
+    }
+
+    public String getSymbol() {
         return this.symbol;
     }
-    public int getIndex(){
+
+    public int getIndex() {
         return this.indexInTable;
     }
 }
