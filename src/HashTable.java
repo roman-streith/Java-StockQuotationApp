@@ -10,16 +10,13 @@ public class HashTable implements java.io.Serializable {
         this.referenceTable = new SymbolHashTable(size);
     }
 
-    public void checkTable(String userInput, String action) {   //
-
-        int index = searchStock(userInput);
-        if (index < 0 ) {
+    public void checkTable(String userInput, String action) {   //table action/function select menu
+        int index = searchStock(userInput);     //check if stock in name-table
+        if (index < 0) {                        //if not found check if stock in symbol-table
             index = referenceTable.searchReference(userInput, "GET_STOCK_INDEX");
         }
-
-        if (index >= 0){
-
-            switch (action){
+        if (index >= 0) {    //if stock found carry out actions
+            switch (action) {
                 case "SEARCH":
                     showHistory(index);
                     break;
@@ -36,7 +33,6 @@ public class HashTable implements java.io.Serializable {
                     System.out.println("Unknown flag in \"checkTable()\"");
                     break;
             }
-
         } else {
             System.out.println("No such stock in table!");
         }
@@ -86,7 +82,7 @@ public class HashTable implements java.io.Serializable {
 
     private void importData(int index, String userInput) {  //import stock data from csv for stock on given index
         String[] data = FileManager.getThirtyDays(userInput);   //FM-class method for data import
-        stockTable[index].populateHistory(data);    //save imported data in stockobject as stringarray
+        stockTable[index].populateHistory(data);    //save imported data in stock-object as string-array
         System.out.println("History has been added to \"" + stockTable[index].getName() + "\" at index [" + index + "]!");
     }
 
@@ -99,7 +95,7 @@ public class HashTable implements java.io.Serializable {
         int count = 1;
         int collisionIndex = hashIndex;
         while (true) {
-            if (stockTable[hashIndex] == null) {    //empty field indicates that data is not in table, set index to an non-table value (-1)
+            if (stockTable[hashIndex] == null) {    //empty field indicates that data is not in table, set index to a non-table value (-1)
                 hashIndex = -1;
                 break;
             } else if (stockTable[hashIndex].getName().equals(userInput)) { //break on match with item in table
@@ -114,7 +110,7 @@ public class HashTable implements java.io.Serializable {
     private int hashFunction(String StockName) {    //hash function
         int index = 0;
         for (int i = 0; i < StockName.length(); i++) {
-            index += StockName.charAt(i) * Math.pow(53, i); //sum of int-representation of a character times 53 to the power of character-position
+            index += StockName.charAt(i) * Math.pow(53, i) % 2003; //sum of int-representation of a character times 53 to the power of character-position
         }
         return index % 2003;    // mod table-size to stay in bounds
     }
