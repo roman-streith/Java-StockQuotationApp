@@ -1,22 +1,15 @@
 import java.io.*;
 
 public class FileManager {
-
-    public static String readFromFileAndBuildTree(String filename, BinaryTree tree){
-        String file =  System.getProperty("user.dir") + "/input/" + filename +".txt";
+    public static void fileToTree(String file, BinarySearchTree bst){
         String line;
-
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-
+        try (BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "/input/" + file +".txt"))) {
             while ((line = br.readLine()) != null) {
-                tree.insertNode(Integer.parseInt(line));
+                bst.insert(Integer.parseInt(line), bst.getRoot());
             }
-
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return "Finished";
+        return;
     }
-
 }
