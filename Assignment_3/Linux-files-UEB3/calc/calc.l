@@ -19,7 +19,24 @@ extern int yyerror(char *s);
 
 ":="    return ASSIGN;
 "+"     return PLUS;
+"-"     return MINUS;
 "*"     return TIMES;
+"/"     return DIVIDE;
+"%"     return MOD;
+"<"     return LESSER;
+">"     return GREATER;
+"<="    return LESSEREQUAL;
+">="    return GREATEREQUAL;
+"=="    return EQUAL;
+"!="    return NOTEQUAL;
+"0x"    return HEX;
+"("     return OPEN;
+")"     return CLOSE;
+"?"     return IFTRUE;
+":"     return COLON;
+","     return COMMA;
+"min"   return MIN;
+"max"   return MAX;
 
 "\n"    return NEWLINE;
 
