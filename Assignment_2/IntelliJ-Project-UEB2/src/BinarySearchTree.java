@@ -49,7 +49,7 @@ public class BinarySearchTree {
 
     private int minKey(Node node) {
         if (node.getLeft() != null) {
-            return this.maxKey(node.getLeft());
+            return this.minKey(node.getLeft());
         }
         return node.getKey();
     }
@@ -84,7 +84,6 @@ public class BinarySearchTree {
     }
 
     private boolean checkAVL(Node node) {
-
         boolean right = true;
         boolean left = true;
         if (node.getRight() != null) {
