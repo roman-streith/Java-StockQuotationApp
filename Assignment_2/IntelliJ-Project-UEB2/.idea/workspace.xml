@@ -2,8 +2,97 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc2bf67f-38e0-4ab7-8f2e-19008873474b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Application/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Application/RUN.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Application/StockApp.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Application/csv/AAPL.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Application/csv/AMZN.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Application/csv/MSFT.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Application/csv/NFLX.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Application/saves/test.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Code/.idea/Code.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Code/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Code/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Code/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Code/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Code/classes/FileManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Code/classes/HashTable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Code/classes/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Code/classes/Stock.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Code/classes/SymbolHashTable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Code/classes/SymbolReference.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Code/classes/manifest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Code/csv/AAPL.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Code/csv/AMZN.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Code/csv/MSFT.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Code/csv/NFLX.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Code/saves/test.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Code/source/FileManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Code/source/HashTable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Code/source/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Code/source/Stock.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Code/source/SymbolHashTable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Code/source/SymbolReference.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/Protokoll_lakheshar_streith.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/Abgabe_UEB1/lakheshar_streith_ue1.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/.idea/workspace-DUALBOOT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/StockQuotationApp.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/csv/AAPL.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/csv/AMZN.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/csv/MSFT.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/csv/NFLX.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/out/production/StockQuotationApp/FileManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/out/production/StockQuotationApp/HashTable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/out/production/StockQuotationApp/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/out/production/StockQuotationApp/Stock.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/out/production/StockQuotationApp/SymbolHashTable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/out/production/StockQuotationApp/SymbolReference.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/saves/aapl.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/saves/empty.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/saves/test.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/saves/testPlot.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/saves/test_2.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/src/FileManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/src/HashTable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/src/Stock.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/src/SymbolHashTable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/IntelliJ-Project_UEB1/src/SymbolReference.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/diverses_UEB1/ADS_Uebung1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/diverses_UEB1/ADS_Uebung1_Checkliste.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/diverses_UEB1/Protokoll.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/diverses_UEB1/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/diverses_UEB1/RomanProtokoll.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 1/diverses_UEB1/examplePlots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 2/IntelliJ-Project-UEB2/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 2/IntelliJ-Project-UEB2/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 2/IntelliJ-Project-UEB2/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 2/IntelliJ-Project-UEB2/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 2/IntelliJ-Project-UEB2/AVL_Tree_Analysis.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 2/IntelliJ-Project-UEB2/input/test.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 2/IntelliJ-Project-UEB2/out/production/AVL_Tree_Analysis/BinaryTree.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 2/IntelliJ-Project-UEB2/out/production/AVL_Tree_Analysis/FileManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 2/IntelliJ-Project-UEB2/out/production/AVL_Tree_Analysis/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 2/IntelliJ-Project-UEB2/out/production/AVL_Tree_Analysis/Node.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 2/IntelliJ-Project-UEB2/src/BinaryTree.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 2/IntelliJ-Project-UEB2/src/FileManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 2/IntelliJ-Project-UEB2/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 2/IntelliJ-Project-UEB2/src/Node.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 2/diverses-UEB2/ADS_Uebung2.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 2/diverses-UEB2/BIF-ALG-SS2019-VO-03.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 3/diverses-UEB3/Algo/calc.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 3/diverses-UEB3/Algo/calc/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 3/diverses-UEB3/Algo/calc/calc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 3/diverses-UEB3/Algo/calc/calc.l" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 3/diverses-UEB3/Algo/calc/calc.y" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 3/diverses-UEB3/Algo/calc/lex.yy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 3/diverses-UEB3/Algo/calc/y.tab.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment 3/diverses-UEB3/Algo/calc/y.tab.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,11 +106,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/BinaryTree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2322">
-              <caret line="131" column="28" selection-start-line="131" selection-start-column="28" selection-end-line="131" selection-end-column="28" />
+            <state relative-caret-position="317">
+              <caret line="117" selection-start-line="117" selection-end-line="117" />
             </state>
           </provider>
         </entry>
@@ -44,11 +133,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/FileManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="270">
+              <caret line="15" column="32" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -88,8 +177,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane" />
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -141,8 +230,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14658849" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14978679" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -185,8 +275,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BinaryTree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2322">
-          <caret line="131" column="28" selection-start-line="131" selection-start-column="28" selection-end-line="131" selection-end-column="28" />
+        <state relative-caret-position="317">
+          <caret line="117" selection-start-line="117" selection-end-line="117" />
         </state>
       </provider>
     </entry>
@@ -206,8 +296,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FileManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="270">
+          <caret line="15" column="32" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
         </state>
       </provider>
     </entry>
