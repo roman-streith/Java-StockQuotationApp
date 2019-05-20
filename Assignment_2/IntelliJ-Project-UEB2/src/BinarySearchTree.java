@@ -1,13 +1,15 @@
 
 public class BinarySearchTree {
     private Node root;
+    private String avl;
 
     public BinarySearchTree() {
-        root = null;
+        this.root = null;
+        this.avl = "undefined";
     }
 
     public Node getRoot() {
-        return root;
+        return this.root;
     }
 
     public Node insert(int key, Node node) {
@@ -36,11 +38,7 @@ public class BinarySearchTree {
             System.out.println("No Tree instantiated.");
             return;
         }
-        if (checkAVL(this.root)) {
-            System.out.println("AVL: yes");
-        } else {
-            System.out.println("AVL: no");
-        }
+        System.out.println("AVL: " + this.avl);
         System.out.println("min: " + this.minKey(this.root));
         System.out.println("max: " + this.maxKey(this.root));
         System.out.println("avg: " + ((double) this.totalKeyNum(this.root) / (double) this.totalNodeNum(this.root)));
@@ -83,48 +81,26 @@ public class BinarySearchTree {
         return sum;
     }
 
-    private boolean checkAVL(Node node) {
-        boolean right = true;
-        boolean left = true;
+    public int checkAVL(Node node) {
+        int rightMax = 0;
+        int leftMax = 0;
         if (node.getRight() != null) {
-            right = this.checkAVL(node.getRight());
+            rightMax = this.checkAVL(node.getRight());
         }
         if (node.getLeft() != null) {
-            left = this.checkAVL(node.getLeft());
+            leftMax = this.checkAVL(node.getLeft());
         }
-        if (this.balance(node) && right && left) { //set this.balance(node) as last if condition for more efficiency
-            return true;
-        }
-        return false;
-    }
-
-    private boolean balance(Node node) {
-        int diff = 0;
-        if ((node.getRight()!= null) && (node.getLeft()!= null)) {
-            diff = Math.abs(maxdepth(node.getRight())- maxdepth(node.getLeft()));
-        } else if ((node.getRight() == null) && (node.getLeft()!= null)) {
-            diff = Math.abs(maxdepth(node.getLeft()));
-        } else if ((node.getLeft() == null) && (node.getRight()!= null)) {
-            diff = Math.abs(maxdepth(node.getRight()));
-        }
-        if (diff > 1) {
-            System.out.println("bal(" + node.getKey() + ") = " + diff + " (AVL Violation!)");
-            return false;
+        int bal = Math.abs(leftMax - rightMax);
+        node.setBalance(bal);
+        if (bal > 1) {
+            System.out.println("bal(" + node.getKey() + ") = " + bal + " (AVL Violation!)");
+            this.avl = "no";
         } else {
-            System.out.println("bal(" + node.getKey() + ") = " + diff);
-            return true;
+            System.out.println("bal(" + node.getKey() + ") = " + bal);
         }
-    }
-
-    private int maxdepth(Node node) {
-        int right = 1;
-        int left = 1;
-        if (node.getRight() != null) {
-            right += maxdepth(node.getRight());
+        if ((node == this.root) && (this.avl != "no")) {
+            this.avl = "yes";
         }
-        if (node.getLeft() != null) {
-            left += maxdepth(node.getLeft());
-        }
-        return Math.max(left, right);
+        return Math.max(leftMax, rightMax) + 1;
     }
 }
