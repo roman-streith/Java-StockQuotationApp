@@ -1,5 +1,5 @@
 %{
-extern int minmax;
+extern int ext;
 extern int yylval; 
 extern int sym[];
 extern int yyerror(char *s);
@@ -18,6 +18,21 @@ extern int yyerror(char *s);
            return INTEGER;
         }
 
+"0x"[0-9A-F]+   {
+                   yylval = strtol(yytext, 0, 16);
+                   return INTEGER;
+                }
+
+"min"   {
+           ext = 0;
+           return EXT;
+        }
+
+"max"   {
+           ext = 1;
+           return EXT;
+        }
+
 ":="    return ASSIGN;
 "+"     return PLUS;
 "-"     return MINUS;
@@ -30,24 +45,11 @@ extern int yyerror(char *s);
 ">="    return GREATEREQUAL;
 "=="    return EQUAL;
 "!="    return NOTEQUAL;
-"0x"[0-9A-F]+   {
-                   yylval = strtol(yytext, 0, 16);
-                   return INTEGER;
-                }
 "("     return OPEN;
 ")"     return CLOSE;
 "?"     return IFTRUE;
 ":"     return COLON;
 ","     return COMMA;
-"min"   {
-           minmax = 0;
-           return MIN;
-        }
-"max"   {
-           minmax = 1;
-           return MAX;
-        }
-
 "\n"    return NEWLINE;
 
 [ \t]   ;

@@ -362,10 +362,10 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[38] =
     {   0,
-        0,    0,   27,   25,   24,   23,   25,    8,   16,   17,
-        6,    4,   20,    5,    7,    2,    2,   19,    9,   25,
-       10,   18,    1,    1,   14,    2,    0,    3,   11,   13,
-       12,    0,    0,   15,   22,   21,    0
+        0,    0,   27,   25,   24,   23,   25,   11,   18,   19,
+        9,    7,   22,    8,   10,    2,    2,   21,   12,   25,
+       13,   20,    1,    1,   17,    2,    0,    6,   14,   16,
+       15,    0,    0,    3,    5,    4,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -463,7 +463,7 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "calc.l"
 #line 2 "calc.l"
-extern int minmax;
+extern int ext;
 extern int yylval; 
 extern int sym[];
 extern int yyerror(char *s);
@@ -765,131 +765,131 @@ YY_RULE_SETUP
 case 3:
 YY_RULE_SETUP
 #line 21 "calc.l"
-return ASSIGN;
-	YY_BREAK
-case 4:
-YY_RULE_SETUP
-#line 22 "calc.l"
-return PLUS;
-	YY_BREAK
-case 5:
-YY_RULE_SETUP
-#line 23 "calc.l"
-return MINUS;
-	YY_BREAK
-case 6:
-YY_RULE_SETUP
-#line 24 "calc.l"
-return TIMES;
-	YY_BREAK
-case 7:
-YY_RULE_SETUP
-#line 25 "calc.l"
-return DIVIDE;
-	YY_BREAK
-case 8:
-YY_RULE_SETUP
-#line 26 "calc.l"
-return MOD;
-	YY_BREAK
-case 9:
-YY_RULE_SETUP
-#line 27 "calc.l"
-return LESSER;
-	YY_BREAK
-case 10:
-YY_RULE_SETUP
-#line 28 "calc.l"
-return GREATER;
-	YY_BREAK
-case 11:
-YY_RULE_SETUP
-#line 29 "calc.l"
-return LESSEREQUAL;
-	YY_BREAK
-case 12:
-YY_RULE_SETUP
-#line 30 "calc.l"
-return GREATEREQUAL;
-	YY_BREAK
-case 13:
-YY_RULE_SETUP
-#line 31 "calc.l"
-return EQUAL;
-	YY_BREAK
-case 14:
-YY_RULE_SETUP
-#line 32 "calc.l"
-return NOTEQUAL;
-	YY_BREAK
-case 15:
-YY_RULE_SETUP
-#line 33 "calc.l"
 {
                    yylval = strtol(yytext, 0, 16);
                    return INTEGER;
                 }
 	YY_BREAK
-case 16:
+case 4:
+YY_RULE_SETUP
+#line 26 "calc.l"
+{
+           ext = 0;
+           return EXT;
+        }
+	YY_BREAK
+case 5:
+YY_RULE_SETUP
+#line 31 "calc.l"
+{
+           ext = 1;
+           return EXT;
+        }
+	YY_BREAK
+case 6:
+YY_RULE_SETUP
+#line 36 "calc.l"
+return ASSIGN;
+	YY_BREAK
+case 7:
 YY_RULE_SETUP
 #line 37 "calc.l"
-return OPEN;
+return PLUS;
+	YY_BREAK
+case 8:
+YY_RULE_SETUP
+#line 38 "calc.l"
+return MINUS;
+	YY_BREAK
+case 9:
+YY_RULE_SETUP
+#line 39 "calc.l"
+return TIMES;
+	YY_BREAK
+case 10:
+YY_RULE_SETUP
+#line 40 "calc.l"
+return DIVIDE;
+	YY_BREAK
+case 11:
+YY_RULE_SETUP
+#line 41 "calc.l"
+return MOD;
+	YY_BREAK
+case 12:
+YY_RULE_SETUP
+#line 42 "calc.l"
+return LESSER;
+	YY_BREAK
+case 13:
+YY_RULE_SETUP
+#line 43 "calc.l"
+return GREATER;
+	YY_BREAK
+case 14:
+YY_RULE_SETUP
+#line 44 "calc.l"
+return LESSEREQUAL;
+	YY_BREAK
+case 15:
+YY_RULE_SETUP
+#line 45 "calc.l"
+return GREATEREQUAL;
+	YY_BREAK
+case 16:
+YY_RULE_SETUP
+#line 46 "calc.l"
+return EQUAL;
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 38 "calc.l"
-return CLOSE;
+#line 47 "calc.l"
+return NOTEQUAL;
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 39 "calc.l"
-return IFTRUE;
+#line 48 "calc.l"
+return OPEN;
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 40 "calc.l"
-return COLON;
+#line 49 "calc.l"
+return CLOSE;
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 41 "calc.l"
-return COMMA;
+#line 50 "calc.l"
+return IFTRUE;
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 42 "calc.l"
-{
-           minmax = 0;
-           return MIN;
-        }
+#line 51 "calc.l"
+return COLON;
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 46 "calc.l"
-{
-           minmax = 1;
-           return MAX;
-        }
+#line 52 "calc.l"
+return COMMA;
 	YY_BREAK
 case 23:
 /* rule 23 can match eol */
 YY_RULE_SETUP
-#line 51 "calc.l"
+#line 53 "calc.l"
 return NEWLINE;
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 53 "calc.l"
+#line 55 "calc.l"
 ;
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 55 "calc.l"
+#line 57 "calc.l"
 yyerror("Invalid character");
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 57 "calc.l"
+#line 59 "calc.l"
 ECHO;
 	YY_BREAK
 #line 896 "lex.yy.c"
@@ -1897,7 +1897,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 57 "calc.l"
+#line 59 "calc.l"
 
 
 int yywrap() {
