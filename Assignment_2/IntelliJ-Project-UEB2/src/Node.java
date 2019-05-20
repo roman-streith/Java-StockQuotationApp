@@ -1,4 +1,4 @@
-public class Node { //BST-Node with key and references to left and right child
+public class Node { //BST-Node with key,avl-balance and references to left and right child
     private int key;
     private Node left;
     private Node right;
