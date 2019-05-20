@@ -49,27 +49,27 @@ extern int yydebug;
     ASSIGN = 259,
     INTEGER = 260,
     NEWLINE = 261,
-    HEX = 262,
-    IFTRUE = 263,
-    COLON = 264,
-    LESSER = 265,
-    GREATER = 266,
-    LESSEREQUAL = 267,
-    GREATEREQUAL = 268,
-    EQUAL = 269,
-    NOTEQUAL = 270,
-    PLUS = 271,
-    MINUS = 272,
-    TIMES = 273,
-    DIVIDE = 274,
-    MOD = 275,
-    OPEN = 276,
-    CLOSE = 277,
-    UMINUS = 278,
-    UPLUS = 279,
-    MIN = 280,
-    MAX = 281,
-    COMMA = 282
+    COMMA = 262,
+    MIN = 263,
+    MAX = 264,
+    IFTRUE = 265,
+    COLON = 266,
+    LESSER = 267,
+    GREATER = 268,
+    LESSEREQUAL = 269,
+    GREATEREQUAL = 270,
+    EQUAL = 271,
+    NOTEQUAL = 272,
+    PLUS = 273,
+    MINUS = 274,
+    TIMES = 275,
+    DIVIDE = 276,
+    MOD = 277,
+    OPEN = 278,
+    CLOSE = 279,
+    UMINUS = 280,
+    UPLUS = 281,
+    HEX = 282
   };
 #endif
 /* Tokens.  */
@@ -77,27 +77,27 @@ extern int yydebug;
 #define ASSIGN 259
 #define INTEGER 260
 #define NEWLINE 261
-#define HEX 262
-#define IFTRUE 263
-#define COLON 264
-#define LESSER 265
-#define GREATER 266
-#define LESSEREQUAL 267
-#define GREATEREQUAL 268
-#define EQUAL 269
-#define NOTEQUAL 270
-#define PLUS 271
-#define MINUS 272
-#define TIMES 273
-#define DIVIDE 274
-#define MOD 275
-#define OPEN 276
-#define CLOSE 277
-#define UMINUS 278
-#define UPLUS 279
-#define MIN 280
-#define MAX 281
-#define COMMA 282
+#define COMMA 262
+#define MIN 263
+#define MAX 264
+#define IFTRUE 265
+#define COLON 266
+#define LESSER 267
+#define GREATER 268
+#define LESSEREQUAL 269
+#define GREATEREQUAL 270
+#define EQUAL 271
+#define NOTEQUAL 272
+#define PLUS 273
+#define MINUS 274
+#define TIMES 275
+#define DIVIDE 276
+#define MOD 277
+#define OPEN 278
+#define CLOSE 279
+#define UMINUS 280
+#define UPLUS 281
+#define HEX 282
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
