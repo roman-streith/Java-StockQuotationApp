@@ -14,9 +14,12 @@ public class Main {
          *  nRouts = (nNodes - 1)! / 2
          *  case nNodes = 5 -> nRouts = 12
          */
-        //new Enum(map.getMatrix());
 
-        new NNH(map.getMatrix());
+        Enum enumPath = new Enum(map);
+        enumPath.printPath();
+
+        NNH nnhPath = new NNH(map);
+        nnhPath.printPath();
+
     }
-
 }
