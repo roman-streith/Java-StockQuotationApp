@@ -1,4 +1,7 @@
-public class Main {
+// Authors: Philipp Lakheshar & Roman Streith
+
+public class Main { // usage: java -jar JARPATH [-e|-n] FILENAME // config files in "input" folder as .txt files // FILENAME without .txt ending
+    // f.e.: java -jar tsp.jar -e test // from folder directory
     public static void main(String[] args) {
         long startTime = System.nanoTime();
         if (args.length != 2 || (!args[0].contains("-e") && !args[0].contains("-n"))) {

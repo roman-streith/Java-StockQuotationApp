@@ -1,4 +1,4 @@
-public class Edge {
+public class Edge { // Edges for adjacency martix with weight and visited flag for NNH
     private double weight;
     private boolean visited;
 
