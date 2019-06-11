@@ -1,54 +1,44 @@
-
 public class NNH {
-
     private int[] path;
-    private Graph graph;
-    private int dimension;
+    private Matrix matrix;
+    private int dim;
 
-    public NNH(Graph graph){
-        this.graph = graph;
-        this.dimension = graph.getDimension();
-        this.path = new int[dimension + 1];
-        findPath(0, 0,0);
+    public NNH(Matrix matrix) {
+        this.matrix = matrix;
+        this.dim = matrix.getDimension();
+        this.path = new int[this.dim];
+        findPath(0, 0);
     }
 
-    public void printPath(){
-        System.out.println("Shortest path fro NNH: ");
-        graph.calcDist(path, "PRINT");
+    public void printPath() {
+        System.out.println("Shortest path for NNH: ");
+        matrix.printPath(path);
     }
 
-    private void findPath(int level, int lastLevel, int visits){
-
-        path[visits] = level + 1;
-
-        if (visits < this.dimension ){
-            setVisited(level, lastLevel);
-            Node []currentLevel = graph.getMatrix()[level];
-            int closest = findClosest(currentLevel);
-            findPath(closest, level,visits + 1);
+    private void findPath(int point, int index) {
+        path[index] = point + 1;
+        if (index + 1 < this.dim) {
+            setVisited(point);
+            Edge[] distances = matrix.getMatrix()[point];
+            findPath(nearest(distances), index + 1);
         }
     }
 
-    private int findClosest(Node []level){
-        int closestIndex = 0;
-        double closest = Double.MAX_VALUE;
-
-        for (int i = 0; i < dimension; i++){
-            if (level[i].getWeight() < closest && !level[i].isVisited()){
-                closest = level[i].getWeight();
-                closestIndex = i;
+    private int nearest(Edge[] point) {
+        int index = 0;
+        double weight = Double.MAX_VALUE;
+        for (int i = 0; i < this.dim; i++) {
+            if (point[i].getWeight() < weight && !point[i].isVisited()) {
+                weight = point[i].getWeight();
+                index = i;
             }
         }
-        return closestIndex;
+        return index;
     }
 
-    private void setVisited(int level, int lastLevel){
-        for (int i = 0; i < dimension; i++){
-            for (int j = 0; j < dimension; j++){
-                if(j == level || j == lastLevel){
-                    graph.getMatrix()[i][j].setVisited();
-                }
-            }
+    private void setVisited(int row) {
+        for (int i = 0; i < dim; i++) {
+            matrix.getMatrix()[i][row].setVisited();
         }
     }
 }

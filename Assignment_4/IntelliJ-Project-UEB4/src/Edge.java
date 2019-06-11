@@ -1,14 +1,18 @@
-public class Node {
+public class Edge {
     private double weight;
     private boolean visited;
 
-    public Node(double w){
+    public Edge(double w) {
         this.weight = w;
         this.visited = false;
     }
 
     public double getWeight() {
         return this.weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 
     public boolean isVisited() {
