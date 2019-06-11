@@ -22,6 +22,7 @@ public class ENM {
     }
 
     public void printPath() {
+        //System.out.println("Number of surviving permutations: " + permutations.size());
         //printPermutations();  // uncomment function for printing of all surviving permutations
         System.out.println("Shortest path for ENM: ");
         matrix.printPath(this.permutations.get(optindex));  // print optimal path
